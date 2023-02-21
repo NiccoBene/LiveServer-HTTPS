@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+   
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+   <script src="https://webar-sdk.blippar.com/releases/1.4.7/webar-sdk-v1.4.7.min.js"></script>--> 
+</head>
+</head>
+    <title>TEST PER AVATAR</title>
+</head>
+<body>
+    <a-scene 
+    webar-scene="key: 25b7a98d-ff15-410b-8149-50657db94ffa"
+    vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false"
+    loading-screen="enabled: false">
+    <!--Si apre la scena e si inserisce la camera per l'AR-->
+    <a-camera webar-camera cursor="rayOrigin: mouse ; fuse : false"></a-camera>
+    <a-assets>
+        <a-asset-item id="myAvatar" src="/Blender+Avatar/AVATAR/MyAvatarANIMATO/MyAVATARkickmma/Avatarmmakick.gltf"></a-asset-item>
+
+    </a-assets>
+
+    <a-entity webar-stage>
+
+
+         <a-gltf-model  onclick="Animazione()" 
+         id="Avatarmma" src="#myAvatar" position="1 0 0"
+         animation-mixer="clip: mmakick; crossFadeDuration: .6 ; loop: true "> <!-- L'ANIMAZIONE GLIEL'HO DATA IO E SI CHIAMA MMAKICK VOLENDO CERCHI CON CTRL+F NEL FILE GLTF LA PAROLA "name"                                    -->
+         </a-gltf-model>
+    </a-entity>
+
+    
+</a-scene>
+
+<script>
+function Animazione()
+{
+    var Avatar=document.getElementById("Avatarmma") //CATTURO l' AVATAR
+    var animazioneAvatar = Avatar.getAttribute("animation-mixer") // Dall'AVATAR CATTURO l'ANIMAZIONE
+    if(animazioneAvatar.clip=="mmakick") //SE (TRA PARENTESI c'è la condizione nella quale si va a verficare l'if quindi se la clip di animazioneAvatar è mmakick fai partire la seguente riga)
+    {
+        Avatar.setAttribute("animation-mixer","clip: 00");    
+    }
+    else
+    {
+        Avatar.setAttribute("animation-mixer","clip: mmakick; crossFadeDuration: .6;loop: true")
+    }
+}
+
+
+
+</script>
+</body>
+</html>
