@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarkerLESS CHIAMARE INDEX</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://webar-sdk.blippar.com/releases/1.4.7/webar-sdk-v1.4.7.min.js"></script>
+</head>
+<body>
+    <a-scene
+    webar-scene="key: 25b7a98d-ff15-410b-8149-50657db94ffa"
+    vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false"
+    loading-screen="enabled: false">
+    <!--Si apre la scena e si inserisce la camera per l'AR-->
+    <a-camera webar-camera></a-camera>
+    <a-assets>
+        <a-asset-item id="halo" src="/3d/scene.gltf"></a-asset-item>
+      </a-assets>
+      
+      
+   
+        <a-entity webar-stage>
+            <!-- Place 3D AR models here -->
+            <a-box position="0 0 0" rotation="0 45 0" color="#4CC3D9"></a-box>
+            <a-gltf-model position="1 1 1" rotation="0 0 0" animation="property: rotation; to: 0 360 0; loop: true; dur: 10000" src="#halo"></a-gltf-model>
+            
+        </a-entity>
+   
+
+       
+        
+        
+      </a-scene>
+</body>
+</html>

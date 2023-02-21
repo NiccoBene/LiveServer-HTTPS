@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+     <!--<script src="https://webar-sdk.blippar.com/releases/1.4.7/webar-sdk-v1.4.7.min.js"></script>-->
+    <title>VideoNormale</title>
+</head>
+<body>
+    
+    <a-scene
+    webar-scene="key: 25b7a98d-ff15-410b-8149-50657db94ffa"
+    vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false"
+    loading-screen="enabled: false">
+
+
+        <a-camera webar-camera cursor="rayOrigin: mouse ; fuse : false"> </a-camera>  <!-- FONDAMENTALE PER AVERE IL TASTO CLICCABILE-->
+        
+        <!--LIBRERIA-->
+        <a-assets> 
+        <video id="basicvideo" autoplay loop="true" src="videotest.mp4"></video>
+        <!--  <video id="Vid" loop="true" src="360.mp4"> </video> -->
+          <img id="playnow" src="watchnow.png" alt="">
+
+        </a-assets>
+        
+        <!--ENTITA-->
+        <a-entity webar-stage>
+       <!-- <a-videosphere src="#Vid"></a-videosphere>
+        <a-videosphere src="360.mp4"></a-videosphere>-->
+       <a-video id="videobase" src="#basicvideo" width="16" height="9" scale="0.1 0.1 0.1" position="0 1 -1">
+        <a-plane id="press" onclick="Playvideo()" src="#playnow" width="16" height="9" scale="1.1 1.1 1.1" position="0 0 0.1"></a-plane>
+       </a-video>
+    
+    </a-entity>
+   
+    </a-scene>
+
+
+
+    <script>
+        function Playvideo()
+        {
+            var Videoo = document.getElementById("videobase")
+            Videoo.setAttribute("visible","true");
+            Videoo.getAttribute("material").src.play();
+            var Spariscibottone = document.getElementById("press")
+            Spariscibottone.setAttribute("visible","false")
+        }
+    </script>
+</body>
+</html>

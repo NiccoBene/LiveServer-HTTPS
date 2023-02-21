@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script> <!-- PACCHETTO PER ANIMARE I GLTF-->
+    <script src="https://unpkg.com/aframe-chromakey-material/dist/aframe-chromakey-material.min.js"></script> <!--GREEN SCREEN-->
+    
+
+    <title>Test animated gltf</title>
+</head>
+<body>
+    <a-scene>
+        <a-camera webar-camera cursor="rayOrigin: mouse ; fuse : false"> </a-camera>
+        <a-assets>
+          <a-asset-item id="bird" src="/GLTF ANIMATI/File 3D/scene.gltf"></a-asset-item>
+        </a-assets>
+        <a-gltf-model
+        onclick="AnimationController()"
+        id="myBird"
+        src="#bird"
+        scale="0.09 0.09 0.09"
+        animation-mixer="clip: Take 001; crossFadeDuration: .6 ; loop: true ">
+    </a-gltf-model>
+
+    <script>
+function AnimationController()
+{
+    var Controller = document.getElementById("myBird") //ASSOCIO IL GLTF A VARIABILE CONTROLLER
+   // Controller.setAttribute("animation-mixer","clip: Take 001; crossFadeDuration: .6 ; loop: true ");
+
+   var animationData= Controller.getAttribute("animation-mixer"); //CATTURO L'ANIMAZIONE DEL GLTF
+
+   if(animationData.clip=="Take 001"){ //SE LA VARIABILE ANIMAZIONE è Take 001 PARTE L'ATTRIBUTO SOTTO
+    Controller.setAttribute("animation-mixer","clip: 00")
+   }else{
+    Controller.setAttribute("animation-mixer","clip: Take 001; crossFadeDuration: .6 ; loop: true ")
+   }
+ }
+
+
+
+
+    </script>
+</a-scene>
+</body>
+</html>

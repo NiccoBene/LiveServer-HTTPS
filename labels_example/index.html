@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>a frame INDEX</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
+    <script src="https://webar-sdk.blippar.com/releases/1.4.3/webar-sdk-v1.4.3.min.js"></script> 
+
+    
+</head>
+<body>
+    <a-scene
+    webar-scene="key: 25b7a98d-ff15-410b-8149-50657db94ffa"
+    vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false"
+    loading-screen="enabled: false">
+    <!--Si apre la scena e si inserisce la camera per l'AR-->
+    <a-camera webar-camera position="1 3 0"> </a-camera>
+    <a-assets>
+        <a-asset-item id="halo" src="/3d/scene.gltf"></a-asse t-item>
+      
+      </a-assets>
+      
+    
+      
+   
+        <a-entity webar-stage>
+            <!-- Place 3D AR models here -->
+           
+           
+            <a-plane color="purple" height="2" width="100" position="0 0 0" rotation="-90 0 0"></a-plane>
+
+            <a-entity id="HALO" gltf-model="#halo" position="0 0.01 0" rotation="0 0 0"  src="#halo" look-at="[camera]"></a-entity>
+           <a-text  id="myLabel" color="black" value="Ciao sono piero" width="10" position="0 5 0"  look-at="[camera]"></a-text>
+           <a-box id="boxId" position="0 0.5 -3" rotation="0 45 0" color="blue"></a-box>
+        </a-entity>
+   
+
+       
+        
+        
+      </a-scene>
+    <button id="bottone" onclick="ONOFF()">BOTTONE TEST</button>
+      <style>
+        #bottone
+        {
+          z-index: 3;
+          position: absolute;
+          bottom: 10px;
+          background-color: yellow;
+          display: none; /*Il pulsante rimane nascosto */
+        }
+      </style>
+
+      <script> //FUNZIONE CHE MOSTRA IL BOTTONE SOLO DOPO IL TRACKING DELL AMBIENTE
+        function ShowButton(){
+          document.getElementById("bottone").style.display="block"; //CATTURO IL BOTTONE
+        }
+        WEBARSDK.SetStageReadyCallback(ShowButton)//COMANDO CON CUI RIPRENDERE POST TRACCIAMENTO
+      </script>
+
+      <script>
+       function ONOFF()
+       {
+        var bottone = document.getElementById("bottone"); //Trovo il mio pulsante
+        var text = document.getElementById("myLabel"); //Trovo il mio testo al quale ho dato l'id myLabel 
+      
+        var OVisible= text.getAttribute("visible");  //Controllo qual'è il valore attuale della proprietà visible
+        if(OVisible==true)
+        {
+          text.setAttribute("visible","false"); //Dico di sparire al testo
+          bottone.innerHTML="RIDAMMI LE INFO" //il bottone cambia il testo al proprio interno
+        }
+        else{
+          text.setAttribute("value","TESTIAML")//Cambio il testo modificando l'attributo value
+        
+          text.setAttribute("visible","true")// faccio tornare visibile il tutto
+          bottone.innerHTML="PIGIA PER NASCONDERE" //il bottone cambia il testo al proprio interno
+          
+        }
+        console.log(text);
+
+       }
+
+
+          
+
+        
+          
+
+        
+      </script>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <!-- COMMENTO PER STOPPARE <script>
+  function Swicthlabel()
+{
+  
+  var _label = document.getElementById("myLabel");
+  var currentVisible = _label.getAttribute("visible");
+  if (currentVisible == true) //controllo della condizione dell'attributo
+  {
+    //Viene spento il tutto con l'attributo visible,false
+    console.log("chi ha spento il testo")
+    _label.setAttribute("visible","false");
+  }
+  else{ //altrimenti ti riattiva il testo con il true
+    console.log("te l'accendo subito")
+    _label.setAttribute("visible","true");
+  }
+  console.log(_label);
+ // _label.setAttribute("visible","false");
+ 
+}
+
+
+</script>
+-->
+</body>
+</html>
